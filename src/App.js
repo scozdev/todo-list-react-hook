@@ -1,6 +1,5 @@
-import React from 'react';
 import styled from 'styled-components';
-import { useGlobalContext } from './context';
+
 import List from './List';
 import ListHeader from './ListHeader';
 import Modal from './Modal';
