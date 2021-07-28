@@ -6,16 +6,14 @@
       rgba(48, 16, 255, 1) 0%,
       rgba(100, 115, 255, 1) 100%);
   --bg-2: #161a2b;
-  --bg-3: linear-gradient(90deg,
-      rgba(93, 12, 255, 1) 0%,
-      rgba(155, 0, 250, 1) 100%);
+ 
   --bg-4: linear-gradient(90deg,
       rgba(20, 159, 255, 1) 0%,
       rgba(17, 122, 255, 1) 100%);
   --bg-5: linear-gradient(90deg,
       rgba(255, 118, 20, 1) 0%,
       rgba(255, 84, 17, 1) 100%);
-  --bg-65: linear-gradient(90deg,
+  --bg-6: linear-gradient(90deg,
       rgba(93, 12, 255, 1) 0%,
       rgba(155, 0, 250, 1) 100%);
   --bg-7: linear-gradient(90deg,
