@@ -1,36 +1,46 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
-import { useGlobalContext } from './context'
-import { PlusIcon } from './icons'
+import { useGlobalContext } from './context';
+import { PlusIcon } from './icons';
 
 const ListHeader = () => {
-  const { addTodo, todo, setTodo } = useGlobalContext()
+  const { addTodo, todo, setTodo, setSearch, search } = useGlobalContext();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    addTodo(todo)
-    setTodo('')
-  }
+    addTodo(todo);
+    setTodo('');
+  };
 
   return (
     <Header>
       <h1>Todos</h1>
+
       <form onSubmit={handleSubmit}>
         <input
-          className='header-input'
+          className='input'
           type='text'
           value={todo}
           onChange={(e) => setTodo(e.target.value)}
         />
+
         <button className='btn'>
           <PlusIcon />
         </button>
       </form>
+
+      <p>Search</p>
+      <input
+        className='input'
+        type='text'
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
     </Header>
-  )
-}
+  );
+};
 
 const Header = styled.header`
   padding: 1rem 0;
@@ -45,19 +55,21 @@ const Header = styled.header`
     display: flex;
     justify-content: center;
   }
-  .header-input {
-    border-radius: 0.2rem;
-    border: 1px solid #ccc;
-    border-right: 0;
+  .input {
+    border-radius: 0.4rem;
+    border: 1px solid #5d0cff;
     padding: 0.4rem;
     flex: 1 0 auto;
   }
 
   .btn {
     border: 0;
-    background-color: #ccc;
-    padding: 0.4rem;
+    background: var(--bg-6);
+    padding: 0.5rem;
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+    margin-left: -.5rem;
   }
-`
+`;
 
-export default ListHeader
+export default ListHeader;
