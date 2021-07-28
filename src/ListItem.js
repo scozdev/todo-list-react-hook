@@ -44,6 +44,7 @@ const Wrapper = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 
   .todo-check {

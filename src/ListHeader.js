@@ -31,13 +31,15 @@ const ListHeader = () => {
         </button>
       </form>
 
-      <p>Search</p>
-      <input
-        className='input'
-        type='text'
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className='search'>
+        <p>Search</p>
+        <input
+          className='input'
+          type='text'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
     </Header>
   );
 };
@@ -54,6 +56,7 @@ const Header = styled.header`
   form {
     display: flex;
     justify-content: center;
+    margin-bottom: 0.4rem;
   }
   .input {
     border-radius: 0.4rem;
@@ -68,7 +71,14 @@ const Header = styled.header`
     padding: 0.5rem;
     border-top-right-radius: 0.4rem;
     border-bottom-right-radius: 0.4rem;
-    margin-left: -.5rem;
+    margin-left: -0.5rem;
+    cursor: pointer;
+  }
+  
+  .search{
+    p {
+      margin-bottom: .2rem;
+    }
   }
 `;
 
