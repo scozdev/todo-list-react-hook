@@ -16,6 +16,7 @@ const App = () => {
 }
 
 const Wrapper = styled.main`
+  background-color: var(--bg-2);
   box-shadow: var(--shadow);
   padding: 1rem;
 `
