@@ -8,13 +8,13 @@ const List = () => {
   if (todos.length === 0) {
     return <Loading>Loading...</Loading>;
   }
-  console.log(todos);
+
   return (
     <Todos>
       {todos
         .filter((todo) => todo.title.indexOf(search) > -1)
-        .map((todo) => (
-          <ListItem key={todo.id} {...todo} />
+        .map((todo, _id) => (
+          <ListItem key={todo.id} {...todo} _id={_id} />
         ))}
     </Todos>
   );

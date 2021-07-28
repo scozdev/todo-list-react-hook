@@ -5,25 +5,45 @@ const Modal = () => {
   const { closeModal, selectItemId, todos, isOpenModal, setSelectItemId } =
     useGlobalContext();
 
+  const checkNumber = (idx) => {
+    if (idx > todos.length) {
+      return 0;
+    }
+    if (idx < 0) {
+      return todos.length - 1;
+    }
+    return idx;
+  };
+
+  const prevTodo = () => {
+    setSelectItemId((prevInd) => {
+      let newInd = prevInd - 1;
+      return checkNumber(newInd);
+    });
+  };
+
+  const nextTodo = () => {
+    setSelectItemId((prevInd) => {
+      let newInd = prevInd + 1;
+      return checkNumber(newInd);
+    });
+  };
+
+  if (todos.length === 0) return null;
+
   return (
     <Wrapper isOpen={isOpenModal}>
       <div className='modal'>
-        <p>{todos && todos[selectItemId]?.title}w</p>
+        <p>{todos[selectItemId]?.title}</p>
 
         <div className='btns'>
           <button className='btn-delete' onClick={() => closeModal()}>
             {'x'}
           </button>
-          <button
-            className='btn-left'
-            onClick={() => setSelectItemId((prevId) => prevId - 1)}
-          >
+          <button className='btn-left' onClick={prevTodo}>
             {'<'}
           </button>
-          <button
-            className='btn-right'
-            onClick={() => setSelectItemId((prevId) => prevId + 1)}
-          >
+          <button className='btn-right' onClick={nextTodo}>
             {'>'}
           </button>
         </div>
@@ -58,6 +78,9 @@ const Wrapper = styled.div`
   font-size: 2rem;
   font-weight: 700;
 
+  button {
+    cursor: pointer;
+  }
   .btn-left {
     position: absolute;
     top: 50%;

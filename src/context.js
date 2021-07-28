@@ -42,7 +42,6 @@ const AppProvider = ({ children }) => {
   };
 
   const removeTodo = (id) => {
-    console.log(id);
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
@@ -58,13 +57,11 @@ const AppProvider = ({ children }) => {
     setIsOpenModal(false);
   };
   const openModal = (id) => {
-    console.log(id);
     setIsOpenModal(true);
     setSelectItemId(id);
   };
 
   const handleCheckTodo = (id) => {
-    console.log(id);
     setTodos(
       todos.map((item) => {
         if (item.id === id) {

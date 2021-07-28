@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { useGlobalContext } from './context';
 import { BinIcon, EditIcon } from './icons';
 
-const ListItem = ({ id, title, st }) => {
+const ListItem = ({ id, title, st ,_id}) => {
   const { removeTodo, editTodo, openModal, handleCheckTodo } =
     useGlobalContext();
 
   return (
     <Wrapper>
-      <p onClick={() => openModal(id)}>{title}</p>
+      <p onClick={() => openModal(_id)}>{title}</p>
 
       <div>
         <button
