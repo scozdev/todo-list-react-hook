@@ -1,0 +1,11 @@
+@import './reset.css';
+
+:root {
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}

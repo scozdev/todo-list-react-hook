@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import styled from 'styled-components'
+import { useGlobalContext } from './context'
+import List from './List'
+import ListHeader from './ListHeader'
 
-function App() {
+const App = () => {
+  const { todos } = useGlobalContext()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Wrapper>
+      <ListHeader />
+      <List todos={todos} />
+    </Wrapper>
+  )
 }
 
-export default App;
+const Wrapper = styled.main`
+  box-shadow: var(--shadow);
+  padding: 1rem;
+`
+
+export default App
