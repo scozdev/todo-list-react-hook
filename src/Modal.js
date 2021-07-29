@@ -6,7 +6,7 @@ const Modal = () => {
     useGlobalContext();
 
   const checkNumber = (idx) => {
-    if (idx > todos.length) {
+    if (idx > todos.length - 1) {
       return 0;
     }
     if (idx < 0) {
