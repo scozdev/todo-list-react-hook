@@ -4,9 +4,14 @@ const AppContext = createContext();
 
 const API = 'https://jsonplaceholder.typicode.com/todos';
 
+const getLocalStorage = () => {
+  const todos = JSON.parse(localStorage.getItem('todos'));
+  return todos;
+};
+
 const AppProvider = ({ children }) => {
   const [todo, setTodo] = useState('');
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(getLocalStorage() || []);
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
 
@@ -83,8 +88,16 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchData(API);
+    !getLocalStorage() && fetchData(API);
   }, []);
+
+  const setLocalStorage = () => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  };
+
+  useEffect(() => {
+    setLocalStorage();
+  }, [todos]);
 
   return (
     <AppContext.Provider
