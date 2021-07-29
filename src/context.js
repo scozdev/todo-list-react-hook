@@ -91,12 +91,8 @@ const AppProvider = ({ children }) => {
     !getLocalStorage() && fetchData(API);
   }, []);
 
-  const setLocalStorage = () => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  };
-
   useEffect(() => {
-    setLocalStorage();
+    localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
   return (
