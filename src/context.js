@@ -12,49 +12,50 @@ const getLocalStorage = () => {
 const AppProvider = ({ children }) => {
   const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState(getLocalStorage() || []);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editID, setEditID] = useState(null);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectItemId, setSelectItemId] = useState(null);
 
   const [search, setSearch] = useState('');
 
-  const addTodo = (text) => {
-    if (isEditing) {
-      setTodos(
-        todos.map((item) => {
-          if (item.id === editID) {
-            return { ...item, title: text };
-          }
-          return item;
-        })
-      );
-      setTodo('');
-      setEditID(null);
-      setIsEditing(false);
-    } else {
-      const newItem = {
-        id: new Date().getTime().toString(),
-        title: text,
-        st: 0,
-      };
+  const [error, setError] = useState({ sh: false, msg: '' });
 
-      setTodos([...todos, newItem]);
-      setTodo('');
-      setIsEditing(false);
+  const showAlert = (msg) => {
+    setError({ sh: true, msg });
+  };
+  const removeAlert = () => {
+    setError({ sh: false });
+  };
+
+  const addTodo = (text) => {
+    if (todos.find((todo) => todo.title.trim() === text.trim())) {
+      return showAlert('duplicate todo');
     }
+    if (text.trim().length === 0) {
+      return showAlert('cannot be empty');
+    }
+    const newItem = {
+      id: new Date().getTime().toString(),
+      title: text,
+      st: 0,
+    };
+    setTodos([...todos, newItem]);
+    setTodo('');
+  };
+
+  const editTodo = (id, text) => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === id) {
+          return { ...item, title: text };
+        }
+        return item;
+      })
+    );
   };
 
   const removeTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const editTodo = (id) => {
-    const specificTodo = todos.find((todo) => todo.id === id);
-    setIsEditing(true);
-    setEditID(id);
-    setTodo(specificTodo.title);
   };
 
   // Modal
@@ -88,7 +89,7 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    !getLocalStorage() && fetchData(API);
+    if (!getLocalStorage()) fetchData(API);
   }, []);
 
   useEffect(() => {
@@ -112,6 +113,9 @@ const AppProvider = ({ children }) => {
         search,
         setSearch,
         handleCheckTodo,
+        showAlert,
+        removeAlert,
+        error,
       }}
     >
       {children}

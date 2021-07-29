@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useGlobalContext } from './context';
+import Error from './Error';
 import { PlusIcon } from './icons';
 
 const ListHeader = () => {
@@ -30,6 +31,8 @@ const ListHeader = () => {
           <PlusIcon />
         </button>
       </form>
+
+      <Error />
 
       <div className='search'>
         <p>Search</p>
@@ -74,10 +77,10 @@ const Header = styled.header`
     margin-left: -0.5rem;
     cursor: pointer;
   }
-  
-  .search{
+
+  .search {
     p {
-      margin-bottom: .2rem;
+      margin-bottom: 0.2rem;
     }
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from './context';
 import { BinIcon, EditIcon, FolderOpenIcon } from './icons';
@@ -7,13 +7,19 @@ const ListItem = ({ id, title, st, _id }) => {
   const { removeTodo, editTodo, openModal, handleCheckTodo } =
     useGlobalContext();
 
+  const [todo, setTodo] = useState(title);
+
   return (
     <Wrapper>
       <button onClick={() => openModal(_id)}>
         <FolderOpenIcon />
       </button>
 
-      <p>{title}</p>
+      <input
+        type='text'
+        value={todo}
+        onChange={(e) => setTodo(e.target.value)}
+      />
 
       <div>
         <button
@@ -21,7 +27,7 @@ const ListItem = ({ id, title, st, _id }) => {
           onClick={() => handleCheckTodo(id)}
         ></button>
 
-        <button onClick={() => editTodo(id)}>
+        <button onClick={() => editTodo(id, todo)}>
           <EditIcon />
         </button>
 
@@ -75,7 +81,7 @@ const Wrapper = styled.li`
     border-radius: 0.5rem;
   }
 
-  p {
+  [type='text'] {
     flex: 1;
   }
 `;
