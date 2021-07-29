@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from './context';
-import { BinIcon, EditIcon } from './icons';
+import { BinIcon, EditIcon, FolderOpenIcon } from './icons';
 
-const ListItem = ({ id, title, st ,_id}) => {
+const ListItem = ({ id, title, st, _id }) => {
   const { removeTodo, editTodo, openModal, handleCheckTodo } =
     useGlobalContext();
 
   return (
     <Wrapper>
-      <p onClick={() => openModal(_id)}>{title}</p>
+      <button onClick={() => openModal(_id)}>
+        <FolderOpenIcon />
+      </button>
+
+      <p>{title}</p>
 
       <div>
         <button
@@ -69,6 +73,10 @@ const Wrapper = styled.li`
     background: rgba(0, 0, 0, 0.5);
     padding: 0.4rem;
     border-radius: 0.5rem;
+  }
+
+  p {
+    flex: 1;
   }
 `;
 
